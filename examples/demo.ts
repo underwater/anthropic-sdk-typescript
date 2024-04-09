@@ -1,8 +1,10 @@
 #!/usr/bin/env -S npm run tsn -T
+import { config } from 'dotenv';
+config();
 
 import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic(); // gets API Key from environment variable ANTHROPIC_API_KEY
+console.log('Anthropic', process.env['ANTHROPIC_API_KEY']);
+const client = new Anthropic({ apiKey: process.env['ANTHROPIC_API_KEY'] }); // gets API Key from environment variable ANTHROPIC_API_KEY
 
 async function main() {
   const result = await client.messages.create({
